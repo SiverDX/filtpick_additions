@@ -21,7 +21,7 @@ public class SelectEnumScreen extends Screen {
     private Button doneButton;
 
     protected SelectEnumScreen(final Screen parent, final Class<?> enumClass, final Consumer<Enum<?>> action, final Supplier<Enum<?>> initialValue) {
-        super(Component.literal("Changing Filter Configuration"));
+        super(Component.translatable("gui.filtpick_additions.config_screen_title"));
         this.parent = parent;
         this.enumClass = enumClass;
         this.action = action;

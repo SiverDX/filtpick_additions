@@ -1,0 +1,5 @@
+{
+  "gui.filtpick_additions.config_screen_title": "Changing Filter Configuration",
+  "gui.filtpick_additions.rarity_filter_button": "Apotheosis affix rarity filter: %s",
+  "gui.filtpick_additions.quality_filter_button": "Quality Food filter: %s"
+}

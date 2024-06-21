@@ -24,7 +24,7 @@ public class EnumEntry extends ObjectSelectionList.Entry<EnumEntry> {
     @Override
     @SuppressWarnings("ConstantConditions")
     public void render(@NotNull final PoseStack pose, int index, int top, int left, int width, int height, int mouseX, int mouseY, boolean isMouseOver, float partialTick) {
-        GuiComponent.drawString(pose, parent.getMinecraft().font, value.toString(), left + 5, top + 2, ChatFormatting.WHITE.getColor());
+        GuiComponent.drawString(pose, parent.getMinecraft().font, /* TODO :: make it translatable */ value.toString(), left + 5, top + 2, ChatFormatting.WHITE.getColor());
     }
 
     public Enum<?> getValue() {
