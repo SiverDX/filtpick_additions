@@ -4,6 +4,7 @@ import de.cadentem.filtpick_additions.FA;
 import de.cadentem.filtpick_additions.common.capability.PlayerData;
 import de.cadentem.filtpick_additions.common.capability.PlayerDataProvider;
 import de.cadentem.filtpick_additions.compat.Compat;
+import de.cadentem.filtpick_additions.data.FAItemTags;
 import de.cadentem.quality_food.util.QualityUtils;
 import de.cadentem.quality_food.util.Utils;
 import net.apeng.filtpick.capability.FiltList;
@@ -25,17 +26,10 @@ public class FilterHandler {
         }
         ItemStack stack = itemEntity.getItem();
 
-        if (FA.isModLoaded(Compat.CURIOS) && CuriosApi.getCuriosHelper().getCurio(stack).isPresent()) {
-            return false;
-        }
-
-//        if (stack.is(TEItemTags.FILTER_BLACKLIST)) {
-//            return false;
-//        }
-
         boolean doFilter = false;
+        boolean isBlacklisted = stack.is(FAItemTags.FILTER_BLACKLIST);
 
-        if (FA.isModLoaded(Compat.APOTHEOSIS)) {
+        if (!isBlacklisted && FA.isModLoaded(Compat.APOTHEOSIS) && /* Apoth Curios */ !(FA.isModLoaded(Compat.CURIOS) && CuriosApi.getCuriosHelper().getCurio(stack).isPresent())) {
             PlayerData data = PlayerDataProvider.getPlayerData(player);
 
             if (data != null && data.rarityFilter != PlayerData.RarityFilter.DISABLED) {
@@ -49,7 +43,7 @@ public class FilterHandler {
             }
         }
 
-        if (FA.isModLoaded(Compat.QUALITY_FOOD)) {
+        if (!isBlacklisted && FA.isModLoaded(Compat.QUALITY_FOOD)) {
             PlayerData data = PlayerDataProvider.getPlayerData(player);
 
             if (data != null && data.qualityFilter != PlayerData.Quality.DISABLED && Utils.isValidItem(stack) && data.qualityFilter.level() >= QualityUtils.getQuality(stack).level()) {
